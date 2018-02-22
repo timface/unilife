@@ -164,6 +164,7 @@ public class World {
             return;
         }
 
+        HaulableItems.Add(obj);
         if (onHaulableItemCreated != null)
             onHaulableItemCreated(obj);
     }

@@ -122,7 +122,7 @@ public class Character {
                 DestTile = myJob.jobTile;
         }
 
-        if(CurrTile == myJob.pickupTile)
+        if(CurrTile == myJob.pickupTile && item == null)
         {
             PickUpHaulableItem();
         }
@@ -207,8 +207,10 @@ public class Character {
 
     void PickUpHaulableItem()
     {
-        item = CurrTile.haulableItem;//GiveItem(); 
-        Debug.Log("Picked up thingo, item is now: " + item.Contents);
+        item = CurrTile.haulableItem;//GiveItem();
+        //Debug.Log(CurrTile.haulableItem);
+        CurrTile.haulableItem.OnRemoved(CurrTile.haulableItem);
+       // Debug.Log("Picked up thingo, item is now: " + item.Contents);
     }
 
 	public void RegisterOnChangeCallback(Action<Character> cbFunc){

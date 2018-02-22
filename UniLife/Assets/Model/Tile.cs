@@ -110,17 +110,22 @@ public class Tile {
         }
 
         haulableItem = item;
+        haulableItem.RegisterOnRemoved(OnHaulableItemRemoved);
         return true;
     }
 
-    public HaulableItem GiveItem()
+    public void OnHaulableItemRemoved(HaulableItem item)
     {
-        HaulableItem itemToGive = haulableItem;
-        
-        //haulableItem.OnRemoved(haulableItem);
+        if (item != haulableItem)
+        {
+            Debug.Log("OnHaulableItemRemoved:: Trying to remove item from tile that isnt there");
+            return;
+        }
+
         haulableItem = null;
-        return itemToGive;
     }
+
+
 
     public Tile[] GetNeighbours(bool diagOkay = false){
 		Tile[] neighbours;
