@@ -77,6 +77,8 @@ public class Fixture {
 
     protected Dictionary<string, System.Object> fixtParameters; //use this dictionary for storing contents or increase <character value> amounts
 
+    float jobCreateCooldown = 0f;
+
 	//TODO: Implement object rotation
 
 	protected Fixture(){
@@ -157,20 +159,31 @@ public class Fixture {
     public void Update(float deltaTime)
     {
         //Debug.Log(fixtParameters["contents"] + " " + fixtParameters["contentCurrAmount"] + " " + fixtParameters["contentMaxAmount"]);
-        if (fixtParameters.ContainsKey("contents") && fixtParameters.ContainsKey("contentCurrAmount") && fixtParameters.ContainsKey("contentMaxAmount")
-            && (int)fixtParameters["contentCurrAmount"] < (int)fixtParameters["contentMaxAmount"])
+        if (jobCreateCooldown <= 0f)
         {
-
-            if (!world.estateJobManager.IsTileReserved(this.tile))
+            if (fixtParameters.ContainsKey("contents") && fixtParameters.ContainsKey("contentCurrAmount") && fixtParameters.ContainsKey("contentMaxAmount")
+                && (int)fixtParameters["contentCurrAmount"] < (int)fixtParameters["contentMaxAmount"])
             {
-                Debug.Log("Adding Haul job from fixture");
-                Tile tile = new PathAstar(world, this.tile, null, "books").EndTile();
-                if (tile != null)
-                    world.estateJobManager.AddJob(new EstateJob(this.tile, EstateJobType.HAUL, 1, Character.DeliverGoods, null, tile));
-                else
-                    Debug.LogError("We cant find an item for this job, aborting");
+
+                if (!world.estateJobManager.IsTileReserved(this.tile))
+                {
+                    PathAstar pathToItem = new PathAstar(world, this.tile, null, "books");
+                    Debug.Log("pathToItem is long: " + pathToItem.Length());
+                    if (pathToItem != null && pathToItem.Length() > 0)
+                    {
+                        Debug.Log("Fixture::Update -- we've got a path to an item");
+                        Tile tile = pathToItem.EndTile();
+                        world.estateJobManager.AddJob(new EstateJob(this.tile, EstateJobType.HAUL, 1, Character.DeliverGoods, null, tile));
+                    }
+                    else
+                        Debug.LogError("We cant find an item for this job, aborting"); //TODO: Implement some sort of goods ordering. 
+
+                    jobCreateCooldown = 5f;
+                }
             }
         }
+
+        jobCreateCooldown -= deltaTime;
     }
 
     public void SetParameter(string key, System.Object value)

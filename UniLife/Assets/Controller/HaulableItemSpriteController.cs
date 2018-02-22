@@ -77,6 +77,6 @@ public class HaulableItemSpriteController : MonoBehaviour {
 		GameObject fixt_go = haulableGameObjectMap [item];
 		Destroy (fixt_go);
 		haulableGameObjectMap.Remove (item);
-
+        world.HaulableItems.Remove(item);
 	}
 }

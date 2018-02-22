@@ -145,4 +145,9 @@ public class Tile {
 
 		return neighbours;
 	}
+
+    public string ToString()
+    {
+        return X + ":" + Y;
+    }
 }

@@ -119,6 +119,6 @@ public class FixtureSpriteController : MonoBehaviour {
 		GameObject fixt_go = fixtureGameObjectMap [fixt];
 		Destroy (fixt_go);
 		fixtureGameObjectMap.Remove (fixt);
-
+        world.Fixtures.Remove(fixt);
 	}
 }

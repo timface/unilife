@@ -29,11 +29,12 @@ public class EstateJobSpriteController : MonoBehaviour {
 	}
 
 	public void OnJobCreated(EstateJob job){
-		Debug.Log ("Job is being created");
+
         if (job.JobType != EstateJobType.BUILD)
             return;
 
-		GameObject job_go = new GameObject ();
+        Debug.Log("Job is being created");
+        GameObject job_go = new GameObject ();
 
 		//Add data and UI to map
 		estateJobGameObjectMap.Add (job, job_go);

@@ -84,7 +84,7 @@ public class Character {
 		myJob.RegisterJobStoppedCallback (OnJobStopped);
 
 		pathAstar = new PathAstar (World.Current, CurrTile, DestTile);
-		if (pathAstar.Length () == 0) {
+		if (pathAstar.Length () == 0 || pathAstar == null) {
 			Debug.LogError ("Character::GetNewJob - PathAstar couldnt find a path to job site!");
 			AbandonJob ();
 			DestTile = CurrTile;
@@ -101,7 +101,7 @@ public class Character {
 			GetNewJob ();
 
 			if (myJob == null) {
-				jobSearchCoolDown = UnityEngine.Random.Range (0.1f, 0.5f);
+				jobSearchCoolDown = UnityEngine.Random.Range (0.5f, 0.1f);
 				DestTile = CurrTile;
 				return;
 			}
@@ -116,7 +116,7 @@ public class Character {
             if (item == null)
             {
                 DestTile = myJob.pickupTile;
-                Debug.Log("Should be heading to pick up at: " + DestTile.X + ":" + DestTile.Y);
+                //Debug.Log("Should be heading to pick up at: " + DestTile.X + ":" + DestTile.Y);
             }
             else
                 DestTile = myJob.jobTile;
@@ -147,10 +147,12 @@ public class Character {
 
 		if (nextTile == null || nextTile == CurrTile) {
 			if (pathAstar == null || pathAstar.Length () == 0) {
+                Debug.Log("Creating new path");
 				pathAstar = new PathAstar (World.Current, CurrTile, DestTile);
 				if (pathAstar.Length () == 0) {
 					Debug.LogError ("Character::UpdateDoMovement - PathAstar couldnt find a path to job site!");
 					AbandonJob ();
+                    DestTile = CurrTile;
 					return;
 				}
 
@@ -208,6 +210,7 @@ public class Character {
 
         item = CurrTile.haulableItem;
         CurrTile.haulableItem.OnRemoved();
+        DestTile = myJob.jobTile;
         Debug.Log("Picked up thingo, item is now: " + item.Contents);
     }
 

@@ -139,7 +139,8 @@ public class EstateJobManager {
 			}
 		}
 
-		return bestJob;
+        //return bestJob; //FIXME return the best job;
+        return jobList.First();
 	}
 
 	public List<EstateJob> GetAllJobs (){

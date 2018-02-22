@@ -10,6 +10,7 @@ public class PathAstar {
 
 	public PathAstar ( World world, Tile tileStart, Tile tileEnd, string objectType = null){
 
+        Debug.Log("PathAstar::PathAstar --  creating new path from :" + tileStart.ToString() + " to " + tileEnd.ToString() + " or looking for:" + objectType);
 		if (world.tileGraph == null)
 			world.tileGraph = new PathTileGraph (world);
 
@@ -54,9 +55,10 @@ public class PathAstar {
 
 		fScore [start] = HeuristicCostEstimate (start, goal);
 
-		while (openSet.Count > 0){
+        while (openSet.Count > 0){
 			PathNode<Tile> current =  openSet.Dequeue();
 
+            
 			//Check to see if we have a positional goal and if we're there.
 			if(goal != null){
 				if(current == goal){
