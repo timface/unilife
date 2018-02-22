@@ -207,7 +207,7 @@ public class Character {
 
     void PickUpHaulableItem()
     {
-        item = CurrTile.GiveItem(); 
+        item = CurrTile.haulableItem;//GiveItem(); 
         Debug.Log("Picked up thingo, item is now: " + item.Contents);
     }
 

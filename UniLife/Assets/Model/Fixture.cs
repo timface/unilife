@@ -199,7 +199,7 @@ public class Fixture {
 
     public void RecieveContents(string content, int amount)
     {
-        if (!fixtParameters.ContainsKey(content))
+        if (!fixtParameters.ContainsKey("contents") && (string)fixtParameters["contents"] != content)
             Debug.LogError("Fixture::RecieveGoods - Trying to put contents into a fixture that dont support this type: " + content);
 
         int currAmount = (int)fixtParameters["contentCurrAmount"];
