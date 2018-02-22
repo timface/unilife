@@ -47,7 +47,6 @@ public class EstateJobManager {
 		switch (job.JobType) {
 		case EstateJobType.BUILD:
 		case EstateJobType.HAUL:
-			Debug.LogAssertion ("EstateJobManager:: AddJob - Added job to buildlist");
 			haulBuildJobList.Add (job);
 			break;
 		case EstateJobType.CLEAN:
@@ -139,8 +138,8 @@ public class EstateJobManager {
 			}
 		}
 
-        //return bestJob; //FIXME return the best job;
-        return jobList.First();
+        return bestJob; 
+        //return jobList.First();
 	}
 
 	public List<EstateJob> GetAllJobs (){

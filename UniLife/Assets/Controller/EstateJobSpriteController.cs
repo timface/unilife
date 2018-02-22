@@ -50,8 +50,6 @@ public class EstateJobSpriteController : MonoBehaviour {
 
 		sr.color = new Color (0.5f, 1f, 0.5f, 0.3f);
 
-		Debug.LogAssertion ("EJMSC::OnJobCreated - Job Count: " + estateJobGameObjectMap.Count);
-
         //TODO: Implement these
         //job.RegisterOnChanged (OnFixtureChanged);
         //job.RegisterOnRemoved (OnFixtureRemoved);
