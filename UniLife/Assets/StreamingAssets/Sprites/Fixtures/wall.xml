@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sprites>
+  <Sprite name="wall"     x="0" y="246" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallN"    x="39" y="182" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNE"   x="0" y="19" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNS"   x="0" y="51" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNW"   x="64" y="19" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNES"  x="39" y="214" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNEW"  x="70" y="117" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNSW"  x="168" y="149" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallNESW" x="0" y="246" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallE"    x="38" y="117" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallES"   x="0" y="83" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallEW"   x="32" y="19" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallESW"  x="136" y="246" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallS"    x="39" y="246" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallSW"   x="64" y="83" w="32" h="32" pixelPerUnit="32"/>
+  <Sprite name="wallW"    x="102" y="117" w="32" h="32" pixelPerUnit="32"/>
+</Sprites>
