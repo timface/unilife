@@ -26,7 +26,7 @@ public class EstateJob {
 		protected set;
 	}
 
-	public Fixture FixturePrototype {
+	public Fixture Fixture {
 		get;
 		protected set;
 	}
@@ -35,6 +35,8 @@ public class EstateJob {
 		get;
 		protected set;
 	}
+
+    Vector2 jobOffset;
 
 	Action<EstateJob> jobOnCompletedCallback;
 	Action<EstateJob> jobOnStoppedCallback;
@@ -45,7 +47,7 @@ public class EstateJob {
 		this.JobType = jobType;
 		this.JobTime = jobTime;
         this.jobOnCompletedCallback = jobOnCompletedCallback;
-		this.FixturePrototype = fixturePrototype;
+		this.Fixture = fixturePrototype;
         this.requiredHaulableItems = new HaulableItem[] { };
 
 		//if (JobType == EstateJobType.BUILD)
@@ -54,8 +56,23 @@ public class EstateJob {
 		if (JobType == EstateJobType.HAUL)
 			this.pickupTile = pickupTile;
 	}
+    public EstateJob(Tile jobTile, EstateJobType jobType, float jobTime, Action<EstateJob> jobOnCompletedCallback, Vector2 jobOffset, Fixture fixturePrototype = null, Tile pickupTile = null)
+    {
+        this.jobTile = WorldController.Instance.World.GetTileAt(jobTile.X + (int)jobOffset.x, jobTile.Y + (int)jobOffset.y);
+        this.JobType = jobType;
+        this.JobTime = jobTime;
+        this.jobOnCompletedCallback = jobOnCompletedCallback;
+        this.Fixture = fixturePrototype;
+        this.requiredHaulableItems = new HaulableItem[] { };
 
-	public void WorkJob(float workTime) {
+        //if (JobType == EstateJobType.BUILD)
+        //this.requiredHaulableItems = FixturePrototype.requiredHaulableItems;
+
+        if (JobType == EstateJobType.HAUL)
+            this.pickupTile = pickupTile;
+    }
+
+    public void WorkJob(float workTime) {
 		switch (JobType) {
 		case EstateJobType.BUILD:
 			WorkBuildJob (workTime);

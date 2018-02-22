@@ -174,15 +174,15 @@ public class EstateJobManager {
 
     void ReserveTiles(EstateJob job)
     {
-        if (job.FixturePrototype == null)
+        if (job.Fixture == null)
         {
             reservedTiles.Add(job.jobTile);
             return;
         }
 
-        for (int xOffset = job.jobTile.X; xOffset < (job.jobTile.X + job.FixturePrototype.Width); xOffset++)
+        for (int xOffset = job.jobTile.X; xOffset < (job.jobTile.X + job.Fixture.Width); xOffset++)
         {
-            for (int yOffset = job.jobTile.Y; yOffset < (job.jobTile.Y + job.FixturePrototype.Height); yOffset++)
+            for (int yOffset = job.jobTile.Y; yOffset < (job.jobTile.Y + job.Fixture.Height); yOffset++)
             {
                 reservedTiles.Add(WorldController.Instance.World.GetTileAt(xOffset, yOffset));
             }
@@ -191,15 +191,15 @@ public class EstateJobManager {
 
     void UnreserveTiles(EstateJob job)
     {
-        if (job.FixturePrototype == null)
+        if (job.Fixture == null)
         {
             reservedTiles.Remove(job.jobTile);
             return;
         }
 
-        for (int xOffset = job.jobTile.X; xOffset < (job.jobTile.X + job.FixturePrototype.Width); xOffset++)
+        for (int xOffset = job.jobTile.X; xOffset < (job.jobTile.X + job.Fixture.Width); xOffset++)
         {
-            for (int yOffset = job.jobTile.Y; yOffset < (job.jobTile.Y + job.FixturePrototype.Height); yOffset++)
+            for (int yOffset = job.jobTile.Y; yOffset < (job.jobTile.Y + job.Fixture.Height); yOffset++)
             {
                 reservedTiles.Remove(WorldController.Instance.World.GetTileAt(xOffset, yOffset));
             }

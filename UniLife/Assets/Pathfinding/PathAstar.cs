@@ -10,7 +10,7 @@ public class PathAstar {
 
 	public PathAstar ( World world, Tile tileStart, Tile tileEnd, string objectType = null){
 
-        Debug.Log("PathAstar::PathAstar --  creating new path from :" + tileStart.ToString() + " to " + tileEnd.ToString() + " or looking for:" + objectType);
+        //Debug.Log("PathAstar::PathAstar --  creating new path from :" + tileStart.ToString() + " to " + tileEnd.ToString() + " or looking for:" + objectType);
 		if (world.tileGraph == null)
 			world.tileGraph = new PathTileGraph (world);
 

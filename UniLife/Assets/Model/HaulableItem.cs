@@ -107,8 +107,8 @@ public class HaulableItem {
         onItemRemoved += cbfunc;
     }
 
-    public void OnRemoved()
+    public void OnRemoved(HaulableItem item)
     {
-        onItemRemoved(this);
+        onItemRemoved(item);
     }
 }

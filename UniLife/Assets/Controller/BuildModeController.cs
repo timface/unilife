@@ -83,6 +83,6 @@ public class BuildModeController : MonoBehaviour {
 
     public static void CompleteBuildJob(EstateJob doneJob)
     {
-        WorldController.Instance.World.PlaceFixture(doneJob.FixturePrototype.ObjectType, doneJob.jobTile); 
+        WorldController.Instance.World.PlaceFixture(doneJob.Fixture.ObjectType, doneJob.jobTile); 
     }
 }

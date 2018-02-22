@@ -113,6 +113,15 @@ public class Tile {
         return true;
     }
 
+    public HaulableItem GiveItem()
+    {
+        HaulableItem itemToGive = haulableItem;
+        
+        //haulableItem.OnRemoved(haulableItem);
+        haulableItem = null;
+        return itemToGive;
+    }
+
     public Tile[] GetNeighbours(bool diagOkay = false){
 		Tile[] neighbours;
 

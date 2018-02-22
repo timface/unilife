@@ -25,7 +25,7 @@ public class HaulableItemSpriteController : MonoBehaviour {
 	}
 
 	public void OnHaulableItemCreated(HaulableItem item){
-		Debug.Log ("Fixture is being created");
+		Debug.Log ("Item is being created");
 		GameObject item_go = new GameObject ();
 
 		//Add data and UI to map
@@ -70,7 +70,7 @@ public class HaulableItemSpriteController : MonoBehaviour {
 
 	void OnHaulableItemRemoved (HaulableItem item){
 		if (!haulableGameObjectMap.ContainsKey (item)) {
-			Debug.LogError ("Trying to remove a fixture not in the list? ");
+			Debug.LogError ("Trying to remove an item not in the list? ");
 			return;
 		}
 

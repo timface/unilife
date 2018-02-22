@@ -40,12 +40,12 @@ public class EstateJobSpriteController : MonoBehaviour {
 		estateJobGameObjectMap.Add (job, job_go);
 
 		//Set up general info about the GO
-		job_go.name = job.FixturePrototype.ObjectType + "_" + job.jobTile.X + "_" + job.jobTile.Y;
-		job_go.transform.position = new Vector3 (job.jobTile.X + ((job.FixturePrototype.Width - 1) / 2f), job.jobTile.Y + ((job.FixturePrototype.Height - 1) / 2f));
+		job_go.name = job.Fixture.ObjectType + "_" + job.jobTile.X + "_" + job.jobTile.Y;
+		job_go.transform.position = new Vector3 (job.jobTile.X + ((job.Fixture.Width - 1) / 2f), job.jobTile.Y + ((job.Fixture.Height - 1) / 2f));
 		job_go.transform.SetParent (this.transform, true);
 
 		SpriteRenderer sr = job_go.AddComponent<SpriteRenderer> ();
-		sr.sprite = fsc.GetSpriteForFixture (job.FixturePrototype);
+		sr.sprite = fsc.GetSpriteForFixture (job.Fixture);
 		sr.sortingLayerName = "Fixture";
 
 		sr.color = new Color (0.5f, 1f, 0.5f, 0.3f);

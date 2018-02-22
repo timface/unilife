@@ -201,16 +201,13 @@ public class Character {
 
     public static void DeliverGoods(EstateJob job)
     {
-        job.FixturePrototype.RecieveContents(job.character.item.Contents, job.character.item.ContentAmount);
+        job.Fixture.RecieveContents(job.character.item.Contents, job.character.item.ContentAmount);
         job.character.item = null;
     }
 
     void PickUpHaulableItem()
     {
-
-        item = CurrTile.haulableItem;
-        CurrTile.haulableItem.OnRemoved();
-        DestTile = myJob.jobTile;
+        item = CurrTile.GiveItem(); 
         Debug.Log("Picked up thingo, item is now: " + item.Contents);
     }
 

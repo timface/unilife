@@ -173,7 +173,7 @@ public class Fixture {
                     {
                         Debug.Log("Fixture::Update -- we've got a path to an item");
                         Tile tile = pathToItem.EndTile();
-                        world.estateJobManager.AddJob(new EstateJob(this.tile, EstateJobType.HAUL, 1, Character.DeliverGoods, null, tile));
+                        world.estateJobManager.AddJob(new EstateJob(this.tile, EstateJobType.HAUL, 1, Character.DeliverGoods, new Vector2(0, -1), this, tile));
                     }
                     else
                         Debug.LogError("We cant find an item for this job, aborting"); //TODO: Implement some sort of goods ordering. 
