@@ -76,7 +76,17 @@ public class Character {
 	}
 
 	void GetNewJob() {
-		myJob = World.Current.estateJobManager.GiveJob (CurrTile, this);
+        switch (CharRole)
+        {
+            case CharacterRole.BUILDER:
+            case CharacterRole.GARDERNER:
+            case CharacterRole.JANITOR:
+                myJob = World.Current.estateJobManager.GiveJob(CurrTile, this);
+                break;
+            case CharacterRole.ACADEMIC:
+                break;
+        }
+		
 		if (myJob == null)
 			return;
 
