@@ -105,10 +105,7 @@ public class World {
 
 		FixturePrototypes.Add ("wall", Fixture.CreatePrototype ("wall", 0, 1, 1, "Wall", true));
 
-        Fixture bookShelfProto = Fixture.CreatePrototype("bookshelf", 0, 2, 1, "Misc", true);
-        bookShelfProto.SetParameter("contents", "books");
-        bookShelfProto.SetParameter("contentCurrAmount", 0);
-        bookShelfProto.SetParameter("contentMaxAmount", 50);
+        Fixture bookShelfProto = Fixture.CreatePrototype("bookshelf", 0, 2, 1, "Misc", true, null, new Content("books", 0, 50));
         FixturePrototypes.Add("bookshelf", bookShelfProto);
 	}
 
@@ -116,7 +113,7 @@ public class World {
     {
         HaulableItemPrototypes = new Dictionary<string, HaulableItem>();
 
-        HaulableItemPrototypes.Add("boxofbooks", HaulableItem.CreatePrototype("boxofbooks", "books", 10));
+        HaulableItemPrototypes.Add("boxofbooks", HaulableItem.CreatePrototype("boxofbooks", new Content("books",10, 10), 1));
     }
 
 	public Tile GetTileAt (int x, int y){

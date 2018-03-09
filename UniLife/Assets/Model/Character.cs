@@ -211,7 +211,7 @@ public class Character {
 
     public static void DeliverGoods(EstateJob job)
     {
-        job.Fixture.RecieveContents(job.character.item.Contents, job.character.item.ContentAmount);
+        job.Fixture.RecieveContents(job.character.item.content.Name, job.character.item.content.CurrentAmount);
         job.character.item = null;
     }
 

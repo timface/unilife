@@ -77,6 +77,7 @@ public class Fixture {
 
     protected Dictionary<string, System.Object> fixtParameters; //use this dictionary for storing contents or increase <character value> amounts
 
+    Content content;
     float jobCreateCooldown = 0f;
 
 	//TODO: Implement object rotation
@@ -85,7 +86,7 @@ public class Fixture {
 	
 	}
 
-	static public Fixture CreatePrototype(string objectType, float movementCost = 1f, int width  = 1, int height  = 1, string category = "Misc", bool isDraggable = false, HaulableItem[] haulItems = null) {
+	static public Fixture CreatePrototype(string objectType, float movementCost = 1f, int width  = 1, int height  = 1, string category = "Misc", bool isDraggable = false, HaulableItem[] haulItems = null, Content content = null) {
 		Fixture obj = new Fixture ();
 		obj.objectType = objectType;
 		obj.movementCost = movementCost;
@@ -96,6 +97,7 @@ public class Fixture {
 		obj.funcPositionValidation = DEFAULT_PositionValidater;
 		obj.requiredHaulableItems = haulItems;
         obj.fixtParameters = new Dictionary<string, System.Object>();
+        obj.content = content;
 
 		return obj;
 	}
@@ -108,6 +110,7 @@ public class Fixture {
 		obj.height = proto.height;
 		obj.Category = proto.category;
         obj.fixtParameters = proto.fixtParameters;
+        obj.content = proto.content;
 
 		obj.tile = tile;
 
@@ -161,8 +164,7 @@ public class Fixture {
         //Debug.Log(fixtParameters["contents"] + " " + fixtParameters["contentCurrAmount"] + " " + fixtParameters["contentMaxAmount"]);
         if (jobCreateCooldown <= 0f)
         {
-            if (fixtParameters.ContainsKey("contents") && fixtParameters.ContainsKey("contentCurrAmount") && fixtParameters.ContainsKey("contentMaxAmount")
-                && (int)fixtParameters["contentCurrAmount"] < (int)fixtParameters["contentMaxAmount"])
+            if (content != null && content.CurrentAmount < content.MaxAmount)
             {
 
                 if (!world.estateJobManager.IsTileReserved(this.tile))
@@ -197,15 +199,19 @@ public class Fixture {
         return fixtParameters[key];
     }
 
-    public void RecieveContents(string content, int amount)
+    public void RecieveContents(string contentName, int amount)
     {
-        if (!fixtParameters.ContainsKey("contents") && (string)fixtParameters["contents"] != content)
-            Debug.LogError("Fixture::RecieveGoods - Trying to put contents into a fixture that dont support this type: " + content);
+        if (content.Name.Equals(contentName))
+            content.RestockContent(amount);
+        else
+            Debug.LogError("Fixture::RecieveGoods - Trying to put contents into a fixture that dont support this type: " + contentName);
+        //if (!fixtParameters.ContainsKey("contents") && (string)fixtParameters["contents"] != content)
+        //    
 
-        int currAmount = (int)fixtParameters["contentCurrAmount"];
-        currAmount += amount;
+        //int currAmount = (int)fixtParameters["contentCurrAmount"];
+        //currAmount += amount;
 
-        fixtParameters["contentCurrAmount"] = currAmount;
+        //fixtParameters["contentCurrAmount"] = currAmount;
     }
 
 	public void RegisterOnChanged (Action<Fixture> cbFunc){

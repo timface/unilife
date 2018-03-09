@@ -70,7 +70,7 @@ public class PathAstar {
             {
                 // We don't have a POSITIONAL goal, we're just trying to find
                 // some king of inventory.  Have we reached it?
-                if (current.data.haulableItem != null && current.data.haulableItem.Contents.Equals(objectType))
+                if (current.data.haulableItem != null && current.data.haulableItem.content.Name.Equals(objectType))
                 {
                     Debug.Log("Found the item we need");
                         ReconstructPath(cameFrom, current);
